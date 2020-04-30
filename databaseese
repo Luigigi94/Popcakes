@@ -1,0 +1,86 @@
+create table Lugar_creacion(lugarcreacionid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, lugar varchar(250));
+create table Lugar_entrega(lugarentregaid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, lugar varchar(250));
+create table Medidas(medidasid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nombre varchar(15));
+create table Ingredientes(ingredientesid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nombre varchar(30), perecederoid integer);
+create table Receta(recetasid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nombre varchar(50), precio double);
+create table Stock(stockid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ingredientesid integer, cantidad double, medidasid integer, entrada timestamp, salida date);
+create table Perecedero(perecederoid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, descripcion varchar(2));
+create table Users(userid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(50), last_name varchar(50), phone varchar(10), emael varchar(50));
+create table Ordenes(ordenid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, userid integer, recetasid integer, subtotal double, fecha_orden timestamp);
+create table Ticket(ticketid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, ordenid integer, total double, fecha_ticket date, lugarcreacionid integer, lugarentregaid integer);
+create table Productos(productoid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, recetasid integer, ingredientesid integer, cantidad double, medidasid int);
+
+insert into Lugar_creacion(lugarcreacionid, lugar) values (1, 'A. del Mazo');
+insert into Lugar_creacion(lugarcreacionid, lugar) values (2, 'Isidro Fabela');
+insert into Lugar_creacion(lugarcreacionid, lugar) values (3, 'La Maquinita');
+insert into Lugar_creacion(lugarcreacionid, lugar) values (4, 'El Seminario');
+insert into Lugar_creacion(lugarcreacionid, lugar) values (5, 'La Crespa');
+
+insert into Lugar_entrega(lugarentregaid, lugar) values (1, '3 Caminos');
+insert into Lugar_entrega(lugarentregaid, lugar) values (2, 'Metepec');
+insert into Lugar_entrega(lugarentregaid, lugar) values (3, 'El Coporo');
+insert into Lugar_entrega(lugarentregaid, lugar) values (4, 'Colonia Sanchez');
+insert into Lugar_entrega(lugarentregaid, lugar) values (5, 'Colon');
+
+insert into Medidas(medidasid, nombre) values (1,"mililitros");
+insert into Medidas(medidasid, nombre) values (2,"gramos");
+insert into Medidas(medidasid, nombre) values (3,"litros");
+insert into Medidas(medidasid, nombre) values (4,"kilogramos");
+insert into Medidas(medidasid, nombre) values (5,"piezas");
+
+insert into Ingredientes(ingredientesid, nombre, perecederoid) values (1,"Jitomate",1);
+insert into Ingredientes(ingredientesid, nombre, perecederoid) values (2,"atún enlatado",2);
+insert into Ingredientes(ingredientesid, nombre, perecederoid) values (3,"apio",1);
+insert into Ingredientes(ingredientesid, nombre, perecederoid) values (4,"sardina",2);
+insert into Ingredientes(ingredientesid, nombre, perecederoid) values (5,"pan",1);
+
+insert into Recetas(recetasid, nombre, precio) values (1,"Sandwich de Atun", 25);
+insert into Recetas(recetasid, nombre, precio) values (2,"Sandwich de Sardina", 30);
+
+
+insert into Stock(stockid, ingredientesid, cantidad, medidasid, salida) values (1,1,50,4, null);
+insert into Stock(stockid, ingredientesid, cantidad, medidasid, salida) values (2,2,12,5, null);
+insert into Stock(stockid, ingredientesid, cantidad, medidasid, salida) values (3,3,22,5, null);
+insert into Stock(stockid, ingredientesid, cantidad, medidasid, salida) values (4,4,15,5, null);
+insert into Stock(stockid, ingredientesid, cantidad, medidasid, salida) values (5,5,50,5, null);
+
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (1, 1, 1, 200, 2);
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (2, 1, 2, 2, 5);
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (3, 1, 5, 2, 5);
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (4, 2, 1, 200, 2);
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (5, 2, 4, 2, 5);
+insert into Producto(productoid, recetasid, ingredientesid, cantidad, medidasid) values (6, 2, 5, 2, 5);
+
+insert into User(userid, name, last_name, phone, emael) values (1,"Luis","Hernández","7226026780","el.luige94@gmail.com");
+insert into User(userid, name, last_name, phone, emael) values (2,"Valeria","Sanchez","7223575137","val.dearest@gmail.com");
+insert into User(userid, name, last_name, phone, emael) values (3,"Eli","Robles","7225101213","eli@gmail.com");
+
+insert into Ordenes(ordenid, userid, recetasid, subtotal) values (1,1,1,25);
+insert into Ordenes(ordenid, userid, recetasid, subtotal) values (2,1,2,30);
+insert into Ordenes(ordenid, userid, recetasid, subtotal) values (4,2,1,25);
+insert into Ordenes(ordenid, userid, recetasid, subtotal) values (3,3,1,25);
+
+insert into Ticket(ticketid, ordenid, total, lugarcreacionid, lugarentregaid) values (1,1,55,1,1);
+insert into Ticket(ticketid, ordenid, total, lugarcreacionid, lugarentregaid) values (2,2,25,1,3);
+insert into Ticket(ticketid, ordenid, total, lugarcreacionid, lugarentregaid) values (3,3,25,4,1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
